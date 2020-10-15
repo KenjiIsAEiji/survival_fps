@@ -538,7 +538,7 @@ MonoBehaviour:
     m_Bits: 55
   isGrounded: 0
   groundRange: 1.1
-  jumpForce: 10
+  jumpForce: 5
   camTransform: {fileID: 171762018}
   sensitivity: 10
 --- !u!114 &2101713452
@@ -553,4 +553,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e4ee1db6081ce34eb49ff56d3151428, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInput: {fileID: 2101713450}
   player: {fileID: 2101713451}
+  mouseSensitivity: 10
+  padSensitivity: 40

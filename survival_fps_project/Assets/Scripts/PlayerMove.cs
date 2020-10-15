@@ -45,8 +45,8 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        yaw += lookVec2.x * sensitivity * Time.deltaTime;
-        pitch -= lookVec2.y * sensitivity * Time.deltaTime;
+        yaw += lookVec2.x * Time.deltaTime;
+        pitch -= lookVec2.y * Time.deltaTime;
 
         pitch = Mathf.Clamp(pitch, -80, 60);
 
@@ -54,7 +54,5 @@ public class PlayerMove : MonoBehaviour
         this.transform.eulerAngles = new Vector3(0, yaw, 0);
 
         isGrounded = Physics.Raycast(transform.position, Vector3.down,groundRange,rayLayer);
-
-        Debug.Log("move: "+ moveVec2 + " look: " + lookVec2);
     }
 }

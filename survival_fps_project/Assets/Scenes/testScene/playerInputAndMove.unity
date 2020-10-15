@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 171762017}
   - component: {fileID: 171762016}
   - component: {fileID: 171762019}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -436,7 +436,7 @@ GameObject:
   - component: {fileID: 2101713450}
   - component: {fileID: 2101713452}
   - component: {fileID: 2101713451}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -481,7 +481,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2101713446}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -2.71}
+  m_LocalPosition: {x: 0, y: 3.54, z: -2.71}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 171762018}
@@ -533,6 +533,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 2101713448}
   targetVelocity: 5
+  rayLayer:
+    serializedVersion: 2
+    m_Bits: 55
+  isGrounded: 0
+  groundRange: 1.1
+  jumpForce: 10
   camTransform: {fileID: 171762018}
   sensitivity: 10
 --- !u!114 &2101713452

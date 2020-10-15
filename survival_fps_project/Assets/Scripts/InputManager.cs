@@ -20,5 +20,7 @@ public class InputManager : MonoBehaviour
     {
         player.moveVec2 = inputs.Player.Move.ReadValue<Vector2>();
         player.lookVec2 = inputs.Player.Look.ReadValue<Vector2>();
+
+        player.jump = inputs.Player.Jump.ReadValue<float>() > 0;
     }
 }

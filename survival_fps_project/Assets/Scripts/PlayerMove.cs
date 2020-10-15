@@ -7,10 +7,16 @@ public class PlayerMove : MonoBehaviour
 {
     public Vector2 moveVec2 { get; set; }
     public Vector2 lookVec2 { get; set; }
+    public bool jump { get; set; }
 
     [Header("- player move setting and component-")]
     [SerializeField] private Rigidbody rb;
     [SerializeField] private float targetVelocity = 10;
+    private float defaultDrag;
+    [SerializeField] LayerMask rayLayer;
+    public bool isGrounded;
+    [SerializeField] float groundRange = 1.1f;
+    [SerializeField] float jumpForce = 1.0f;
     
     [Header("- camera Aiming -")]
     [SerializeField] private Transform camTransform;
@@ -20,13 +26,20 @@ public class PlayerMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        defaultDrag = rb.drag;
     }
 
     void FixedUpdate()
     {
-        Vector3 v = new Vector3(moveVec2.x, 0f, moveVec2.y) * targetVelocity;
-        rb.AddRelativeForce(v * rb.mass * rb.drag / (1f - rb.drag * Time.fixedDeltaTime));
+        if(isGrounded){
+            rb.drag = defaultDrag;
+            Vector3 v = new Vector3(moveVec2.x, 0f, moveVec2.y) * targetVelocity;
+            rb.AddRelativeForce(v * rb.mass * rb.drag / (1f - rb.drag * Time.fixedDeltaTime));
+
+            if(jump) rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+        }else{
+            rb.drag = 0f;
+        }
     }
 
     // Update is called once per frame
@@ -39,6 +52,8 @@ public class PlayerMove : MonoBehaviour
 
         camTransform.localEulerAngles = new Vector3(pitch, 0, 0);
         this.transform.eulerAngles = new Vector3(0, yaw, 0);
+
+        isGrounded = Physics.Raycast(transform.position, Vector3.down,groundRange,rayLayer);
 
         Debug.Log("move: "+ moveVec2 + " look: " + lookVec2);
     }

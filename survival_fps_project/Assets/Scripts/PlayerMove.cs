@@ -45,8 +45,8 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        yaw += lookVec2.x * Time.deltaTime;
-        pitch -= lookVec2.y * Time.deltaTime;
+        yaw += lookVec2.x * sensitivity * Time.deltaTime;
+        pitch -= lookVec2.y * sensitivity * Time.deltaTime;
 
         pitch = Mathf.Clamp(pitch, -80, 60);
 

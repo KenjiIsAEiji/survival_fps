@@ -7,8 +7,6 @@ public class InputManager : MonoBehaviour
 {
     [SerializeField] PlayerInput playerInput;
     [SerializeField] private PlayerMove player;
-    [SerializeField] float mouseSensitivity = 10f;
-    [SerializeField] float padSensitivity = 40;
 
     // InputActionsの登録と破棄
     PlayerInputActions inputs;
@@ -23,9 +21,6 @@ public class InputManager : MonoBehaviour
     void Update()
     {
         player.moveVec2 = inputs.Player.Move.ReadValue<Vector2>();
-        
-        Debug.Log(playerInput.defaultControlScheme == "Keyboard&Mouse");
-        
         player.lookVec2 = inputs.Player.Look.ReadValue<Vector2>();
 
         player.jump = inputs.Player.Jump.ReadValue<float>() > 0;

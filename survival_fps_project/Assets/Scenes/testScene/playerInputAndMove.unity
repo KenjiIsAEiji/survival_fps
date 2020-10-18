@@ -514,7 +514,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
+  m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
@@ -556,4 +556,4 @@ MonoBehaviour:
   playerInput: {fileID: 2101713450}
   player: {fileID: 2101713451}
   mouseSensitivity: 10
-  padSensitivity: 40
+  padSensitivity: 80

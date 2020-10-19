@@ -8,6 +8,7 @@ public class PlayerMove : MonoBehaviour
     public Vector2 moveVec2 { get; set; }
     public Vector2 lookVec2 { get; set; }
     public bool jump { get; set; }
+    public bool crouch { get; set; }
 
     [Header("- player move setting and component-")]
     [SerializeField] private Rigidbody rb;
@@ -54,5 +55,7 @@ public class PlayerMove : MonoBehaviour
         this.transform.eulerAngles = new Vector3(0, yaw, 0);
 
         isGrounded = Physics.Raycast(transform.position, Vector3.down,groundRange,rayLayer);
+
+        if(crouch) Debug.Log("Crouching");
     }
 }

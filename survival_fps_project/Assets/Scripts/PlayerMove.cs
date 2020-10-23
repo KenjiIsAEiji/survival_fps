@@ -12,8 +12,10 @@ public class PlayerMove : MonoBehaviour
 
     [Header("- player move setting and component-")]
     [SerializeField] private Rigidbody rb;
+    [SerializeField] private CapsuleCollider playerCollider;
     [SerializeField] private float targetVelocity = 10;
     private float defaultDrag;
+    private float defaultPlayerHeight;
     [SerializeField] LayerMask rayLayer;
     public bool isGrounded;
     [SerializeField] float groundRange = 1.1f;
@@ -28,6 +30,7 @@ public class PlayerMove : MonoBehaviour
     void Start()
     {
         defaultDrag = rb.drag;
+        defaultPlayerHeight = playerCollider.height;
     }
 
     void FixedUpdate()
@@ -56,6 +59,10 @@ public class PlayerMove : MonoBehaviour
 
         isGrounded = Physics.Raycast(transform.position, Vector3.down,groundRange,rayLayer);
 
-        if(crouch) Debug.Log("Crouching");
+        if(crouch){
+            playerCollider.height = defaultPlayerHeight / 2f;
+        }else{
+            playerCollider.height = defaultPlayerHeight;
+        }
     }
 }

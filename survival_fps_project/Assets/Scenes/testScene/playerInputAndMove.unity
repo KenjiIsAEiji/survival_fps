@@ -828,7 +828,7 @@ CapsuleCollider:
   m_Radius: 0.2
   m_Height: 1.23
   m_Direction: 1
-  m_Center: {x: 0, y: -0.38, z: 0}
+  m_Center: {x: 0, y: -0.4, z: 0}
 --- !u!54 &2101713448
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -853,7 +853,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2101713446}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.999, z: -2.71}
+  m_LocalPosition: {x: 0, y: 1.018, z: -2.71}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 171762018}
@@ -904,6 +904,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 2101713448}
+  playerCollider: {fileID: 2101713447}
   targetVelocity: 5
   rayLayer:
     serializedVersion: 2

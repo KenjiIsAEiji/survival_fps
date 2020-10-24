@@ -909,8 +909,9 @@ MonoBehaviour:
   rayLayer:
     serializedVersion: 2
     m_Bits: 55
+  rayOriginHeightOffset: 0
   isGrounded: 0
-  groundRange: 1.1
+  groundDistance: 0.1
   jumpForce: 5
   camTransform: {fileID: 171762018}
   sensitivity: 10

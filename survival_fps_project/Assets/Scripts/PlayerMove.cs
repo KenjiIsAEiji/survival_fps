@@ -16,13 +16,13 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private float targetVelocity = 10;
     private float defaultDrag;
 
-    // player jump and ground check settings
+    [Header("- player jump and ground check settings -")]
+    [SerializeField] LayerMask checkLayer;
     private float defaultPlayerHeight;
-    [SerializeField] LayerMask rayLayer;
     public bool isGrounded;
-    [SerializeField] float groundDistance = 1.1f;
-    [SerializeField] float rayOriginHeightOffset = 0;
+    [SerializeField] float checkHeightOffset = 0;
     [SerializeField] float jumpForce = 1.0f;
+    private bool jumpFlag = false;
     
     [Header("- camera Aiming -")]
     [SerializeField] private Transform camTransform;
@@ -43,7 +43,12 @@ public class PlayerMove : MonoBehaviour
             Vector3 v = new Vector3(moveVec2.x, 0f, moveVec2.y) * targetVelocity;
             rb.AddRelativeForce(v * rb.mass * rb.drag / (1f - rb.drag * Time.fixedDeltaTime));
 
-            if(jump) rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+            if(jump){
+                if(!jumpFlag) rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+                jumpFlag = true;
+            }else{
+                jumpFlag = false;
+            }
         }else{
             rb.drag = 0f;
         }
@@ -60,19 +65,28 @@ public class PlayerMove : MonoBehaviour
         camTransform.localEulerAngles = new Vector3(pitch, 0, 0);
         this.transform.eulerAngles = new Vector3(0, yaw, 0);
         
-        float rayHeight = transform.position.y - (playerCollider.height / 2f) + playerCollider.center.y + rayOriginHeightOffset;
-        Ray groundRay = new Ray(
-             new Vector3(transform.position.x, rayHeight, transform.position.z),
-             Vector3.down
+        float checkHeight = transform.position.y - (playerCollider.height / 2f) + playerCollider.center.y + checkHeightOffset;
+        isGrounded = Physics.CheckSphere(
+            new Vector3(transform.position.x, checkHeight, transform.position.z),
+            playerCollider.radius,
+            checkLayer
         );
-
-        isGrounded = Physics.Raycast(groundRay, groundDistance, rayLayer);
-        Debug.DrawRay(groundRay.origin, groundRay.direction * groundDistance, Color.red, 0.1f);
 
         if(crouch){
             playerCollider.height = defaultPlayerHeight / 2f;
         }else{
             playerCollider.height = defaultPlayerHeight;
         }
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+
+        float height = transform.position.y - (playerCollider.height / 2f) + playerCollider.center.y + checkHeightOffset;
+        Gizmos.DrawWireSphere(
+            new Vector3(transform.position.x, height, transform.position.z),
+            playerCollider.radius
+        );
     }
 }

@@ -26,6 +26,7 @@ public class PlayerMove : MonoBehaviour
     
     [Header("- camera Aiming -")]
     [SerializeField] private Transform camTransform;
+    [SerializeField] private float camHeightOffcet = 0.2f;
     [SerializeField] private float sensitivity = 10f;
     private float yaw, pitch;
 
@@ -65,7 +66,16 @@ public class PlayerMove : MonoBehaviour
         camTransform.localEulerAngles = new Vector3(pitch, 0, 0);
         this.transform.eulerAngles = new Vector3(0, yaw, 0);
         
-        float checkHeight = transform.position.y - (playerCollider.height / 2f) + playerCollider.center.y + checkHeightOffset;
+        // capsuleCollider Center World height (y axis)
+        float capsuleCenter = transform.position.y + playerCollider.center.y;
+
+        camTransform.transform.position = new Vector3(
+            camTransform.transform.position.x,
+            capsuleCenter + (playerCollider.height / 2f) + camHeightOffcet,
+            camTransform.transform.position.z
+        );
+
+        float checkHeight = capsuleCenter - (playerCollider.height / 2f) + checkHeightOffset;
         isGrounded = Physics.CheckSphere(
             new Vector3(transform.position.x, checkHeight, transform.position.z),
             playerCollider.radius,

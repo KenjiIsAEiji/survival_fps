@@ -25,5 +25,6 @@ public class InputManager : MonoBehaviour
 
         player.jump = inputs.Player.Jump.ReadValue<float>() > 0;
         player.crouch = inputs.Player.Crouch.ReadValue<float>() > 0;
+        player.sprint = inputs.Player.Sprint.ReadValue<float>() > 0;
     }
 }

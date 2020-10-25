@@ -9,11 +9,13 @@ public class PlayerMove : MonoBehaviour
     public Vector2 lookVec2 { get; set; }
     public bool jump { get; set; }
     public bool crouch { get; set; }
+    public bool sprint { get; set; }
 
     [Header("- player walk settings and component-")]
     [SerializeField] private Rigidbody rb;
     [SerializeField] private CapsuleCollider playerCollider;
     [SerializeField] private float targetVelocity = 10;
+    [SerializeField] private float sprintAmplifi = 1.5f;
     private float defaultDrag;
 
     [Header("- player jump and ground check settings -")]
@@ -42,7 +44,12 @@ public class PlayerMove : MonoBehaviour
     {
         if(isGrounded){
             rb.drag = defaultDrag;
-            Vector3 v = new Vector3(moveVec2.x, 0f, moveVec2.y) * targetVelocity;
+            Vector3 v;
+            if(sprint){
+                v = new Vector3(moveVec2.x, 0f, moveVec2.y) * targetVelocity * sprintAmplifi;
+            }else{
+                v = new Vector3(moveVec2.x, 0f, moveVec2.y) * targetVelocity;
+            }
             rb.AddRelativeForce(v * rb.mass * rb.drag / (1f - rb.drag * Time.fixedDeltaTime));
 
             if(jump){

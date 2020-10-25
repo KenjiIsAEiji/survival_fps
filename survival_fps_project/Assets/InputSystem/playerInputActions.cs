@@ -305,7 +305,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""694c304b-d75c-4d6e-a8d1-4ce494893f31"",
-                    ""path"": ""<Keyboard>/c"",
+                    ""path"": ""<Keyboard>/ctrl"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",

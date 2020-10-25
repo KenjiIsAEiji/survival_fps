@@ -840,7 +840,7 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.2
-  m_Height: 1.23
+  m_Height: 1.2
   m_Direction: 1
   m_Center: {x: 0, y: -0.4, z: 0}
 --- !u!54 &2101713448
@@ -919,7 +919,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 2101713448}
   playerCollider: {fileID: 2101713447}
-  targetVelocity: 5
+  targetVelocity: 4.5
   checkLayer:
     serializedVersion: 2
     m_Bits: 55
@@ -928,7 +928,7 @@ MonoBehaviour:
   jumpForce: 9
   camTransform: {fileID: 171762018}
   camHeightOffcet: 0.18
-  sensitivity: 10
+  sensitivity: 9.84
 --- !u!114 &2101713452
 MonoBehaviour:
   m_ObjectHideFlags: 0

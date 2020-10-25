@@ -23,6 +23,7 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] float checkHeightOffset = 0;
     [SerializeField] float jumpForce = 1.0f;
     private bool jumpFlag = false;
+    private bool crouchInputBuf, crouching;
     
     [Header("- camera Aiming -")]
     [SerializeField] private Transform camTransform;
@@ -45,7 +46,10 @@ public class PlayerMove : MonoBehaviour
             rb.AddRelativeForce(v * rb.mass * rb.drag / (1f - rb.drag * Time.fixedDeltaTime));
 
             if(jump){
-                if(!jumpFlag) rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+                if(!jumpFlag){
+                    rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+                    crouching = false;
+                }
                 jumpFlag = true;
             }else{
                 jumpFlag = false;
@@ -83,10 +87,12 @@ public class PlayerMove : MonoBehaviour
         );
 
         if(crouch){
-            playerCollider.height = defaultPlayerHeight / 2f;
+            if(!crouchInputBuf) crouching = !crouching;
+            crouchInputBuf = true;
         }else{
-            playerCollider.height = defaultPlayerHeight;
+            crouchInputBuf = false;
         }
+        playerCollider.height = crouching ? defaultPlayerHeight / 2f : defaultPlayerHeight;
     }
 
     void OnDrawGizmos()

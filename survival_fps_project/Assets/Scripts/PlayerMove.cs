@@ -45,7 +45,7 @@ public class PlayerMove : MonoBehaviour
         if(isGrounded){
             rb.drag = defaultDrag;
             Vector3 v;
-            if(sprint){
+            if(sprint && moveVec2.y > 0){
                 v = new Vector3(moveVec2.x, 0f, moveVec2.y) * targetVelocity * sprintAmplifi;
             }else{
                 v = new Vector3(moveVec2.x, 0f, moveVec2.y) * targetVelocity;

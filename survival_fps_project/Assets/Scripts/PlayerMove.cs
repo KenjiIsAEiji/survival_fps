@@ -16,6 +16,7 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private CapsuleCollider playerCollider;
     [SerializeField] private float targetVelocity = 10;
     [SerializeField] private float sprintAmplifi = 1.5f;
+    [SerializeField] private float crouchSpeed = 1.0f;
     private float defaultDrag;
 
     [Header("- player jump and ground check settings -")]
@@ -99,7 +100,9 @@ public class PlayerMove : MonoBehaviour
         }else{
             crouchInputBuf = false;
         }
-        playerCollider.height = crouching ? defaultPlayerHeight / 2f : defaultPlayerHeight;
+
+        float targetHeight = crouching ? defaultPlayerHeight / 2f : defaultPlayerHeight;
+        playerCollider.height = Mathf.Lerp(playerCollider.height,targetHeight,crouchSpeed * Time.deltaTime);
     }
 
     void OnDrawGizmos()

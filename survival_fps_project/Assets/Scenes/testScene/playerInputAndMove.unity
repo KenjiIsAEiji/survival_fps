@@ -920,6 +920,8 @@ MonoBehaviour:
   rb: {fileID: 2101713448}
   playerCollider: {fileID: 2101713447}
   targetVelocity: 4.5
+  sprintAmplifi: 1.5
+  crouchSpeed: 5.5
   checkLayer:
     serializedVersion: 2
     m_Bits: 55

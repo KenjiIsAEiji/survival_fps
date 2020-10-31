@@ -4,9 +4,30 @@ using UnityEngine;
 
 public class TestGun : Gun
 {
-    public override void Shoot()
+    private bool semiAutoTrigger = false;
+
+    public override void Shoot(bool trigger)
     {
-        Debug.Log("Test Gun fire!");
-        
+        if(trigger){
+            if(!semiAutoTrigger) {
+                fireBullet();
+                Debug.Log("Test Gun fire!");
+                semiAutoTrigger = true;
+            }
+        }else{
+            semiAutoTrigger = false;
+        }
+    }
+
+    void fireBullet()
+    {
+        GameObject bullet = Instantiate(
+            bulletPrefab,
+            muzzle.position,
+            Quaternion.identity
+        );
+
+        bullet.GetComponent<Rigidbody>().AddForce(muzzle.forward * bulletSpeed,ForceMode.Impulse);
+        Destroy(bullet,10f);
     }
 }

@@ -7,6 +7,7 @@ public class InputManager : MonoBehaviour
 {
     [SerializeField] PlayerInput playerInput;
     [SerializeField] private PlayerMove player;
+    [SerializeField] private GunController gunController;
 
     // InputActionsの登録と破棄
     PlayerInputActions inputs;
@@ -26,5 +27,7 @@ public class InputManager : MonoBehaviour
         player.jump = inputs.Player.Jump.ReadValue<float>() > 0;
         player.crouch = inputs.Player.Crouch.ReadValue<float>() > 0;
         player.sprint = inputs.Player.Sprint.ReadValue<float>() > 0;
+
+        gunController.fire = inputs.Player.Fire.ReadValue<float>() > 0;
     }
 }

@@ -13,7 +13,7 @@ public abstract class Gun : MonoBehaviour
     // 弾丸プレファブ
     public GameObject bulletPrefab;
 
-    public virtual void Shoot()
+    public virtual void Shoot(bool trigger)
     {
         Debug.Log("GunShoot");
     }

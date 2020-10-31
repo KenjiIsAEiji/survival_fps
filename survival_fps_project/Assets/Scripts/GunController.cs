@@ -10,12 +10,12 @@ public class GunController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gun.Shoot();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        gun.Shoot(fire);
     }
 }

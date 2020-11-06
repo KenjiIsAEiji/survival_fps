@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestFullAutoGun : MonoBehaviour
+public class TestFullAutoGun : Gun
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public float fireRate = 1f;
+    private bool triggerDownFlag = false;
 
-    // Update is called once per frame
-    void Update()
+    public override void Shoot(bool trigger)
     {
-        
+        if(trigger){
+
+        }else{
+
+        }
     }
 }

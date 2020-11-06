@@ -4,13 +4,19 @@ using UnityEngine;
 
 public abstract class Gun : MonoBehaviour
 {
-    // 発射時の初速
+    /// <summary>
+    /// 発射時の初速
+    /// </summary>
     public float bulletSpeed = 100f;
     
-    // 銃における弾丸の発射位置
+    /// <summary>
+    /// 銃における弾丸の発射位置
+    /// </summary>
     public Transform muzzle;
     
-    // 弾丸プレファブ
+    /// <summary>
+    /// 弾丸プレファブ
+    /// </summary>
     public GameObject bulletPrefab;
 
     public virtual void Shoot(bool trigger)

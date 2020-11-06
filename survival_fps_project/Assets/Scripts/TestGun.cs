@@ -24,7 +24,7 @@ public class TestGun : Gun
         GameObject bullet = Instantiate(
             bulletPrefab,
             muzzle.position,
-            Quaternion.identity
+            muzzle.rotation
         );
 
         bullet.GetComponent<Rigidbody>().AddForce(muzzle.forward * bulletSpeed,ForceMode.Impulse);
